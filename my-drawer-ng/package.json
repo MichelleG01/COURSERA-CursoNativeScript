@@ -42,6 +42,8 @@
     "@nativescript/angular": "~10.1.0",
     "@nativescript/core": "~7.0.0",
     "@nativescript/theme": "~2.3.0",
+    "nativescript-angular": "^10.0.0",
+    "nativescript-toast": "^2.0.0",
     "nativescript-ui-sidedrawer": "~9.0.0",
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.6.0",
