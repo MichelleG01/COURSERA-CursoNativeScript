@@ -1,5 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "@nativescript/angular";
+import { NoticiasService } from "../domain/noticias.service";
 
 import { SearchRoutingModule } from "./search-routing.module";
 import { SearchComponent } from "./search.component";
@@ -12,6 +13,8 @@ import { SearchComponent } from "./search.component";
     declarations: [
         SearchComponent
     ],
+    //providers: [NoticiasService], //para que más de un módulo pueda usar este "NoticiasService" 
+    //sin necesidad de tener que poner cada uno su propio "providers".
     schemas: [
         NO_ERRORS_SCHEMA
     ]

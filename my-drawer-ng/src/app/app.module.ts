@@ -4,6 +4,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { NoticiasService } from "./domain/noticias.service";
 
 @NgModule({ //este es un modulo raiz
     bootstrap: [ //con esto se inicializa el modulo
@@ -15,6 +16,7 @@ import { AppComponent } from "./app.component";
         NativeScriptModule,
         NativeScriptUISideDrawerModule
     ],
+    providers: [NoticiasService], //forma global
     declarations: [ //las declaraciones son los componentes, directivas y pipes, que este módulo declara 
         //para ser usadas por otros módulos.
         AppComponent //Los componentes son todo lo que tiene connotación gráfica, todo lo que tiene que ser 
