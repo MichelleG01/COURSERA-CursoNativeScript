@@ -10,7 +10,8 @@ const routes: Routes = [
     { path: "featured", loadChildren: () => import("~/app/featured/featured.module").then((m) => m.FeaturedModule) },
     { path: "settings", loadChildren: () => import("~/app/settings/settings.module").then((m) => m.SettingsModule) },
     { path: "news", loadChildren: () => import("~/app/news/news.module").then(m => m.NewsModule) },
-    { path: "documents", loadChildren:()=> import("~/app/documents/documents.module").then(m=>m.DocumentsModule)}
+    { path: "documents", loadChildren:()=> import("~/app/documents/documents.module").then(m=>m.DocumentsModule)},
+    { path: "share", loadChildren:() => import("~/app/share/share.module").then(m=>m.ShareModule)}
 ];
 
 @NgModule({
