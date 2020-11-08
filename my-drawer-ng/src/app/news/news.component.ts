@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { Application } from "@nativescript/core";
-//import * as app from "tns-core-modules/application";
+import * as app from "@nativescript/core/application";
 import * as Toast from 'nativescript-toast';
 
 @Component({
@@ -25,7 +24,7 @@ export class NewsComponent implements OnInit {
   }
 
   onDrawerButtonTap(): void {
-    const sideDrawer = <RadSideDrawer>Application.getRootView();
+    const sideDrawer = <RadSideDrawer>app.getRootView();
     sideDrawer.showDrawer();
 }
 

@@ -4,7 +4,6 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { NewsComponent } from './news/news.component';
 
 @NgModule({ //este es un modulo raiz
     bootstrap: [ //con esto se inicializa el modulo
