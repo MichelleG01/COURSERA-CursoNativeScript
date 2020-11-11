@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { Application } from "@nativescript/core";
 import { NoticiasService } from "../domain/noticias.service";
+import { RouterExtensions } from "@nativescript/angular";
 
 @Component({
     selector: "Search", //esto crea un "tag" HTML, similar al HTML, en realidad es un "tag" XML, 
@@ -13,7 +14,7 @@ import { NoticiasService } from "../domain/noticias.service";
 })
 export class SearchComponent implements OnInit {
 
-    constructor( private noticias: NoticiasService ) {
+    constructor( private noticias: NoticiasService, private routerExtensions: RouterExtensions ) {
         // Use the component constructor to inject providers.
     }
 
@@ -36,5 +37,16 @@ export class SearchComponent implements OnInit {
 
     onItemTap(x):void{
         console.dir(x);
+    }
+
+    onNavItemTap(navItemRoute: string): void {
+        this.routerExtensions.navigate([navItemRoute], {
+            transition: {
+                name: "fade"
+            }
+        });
+
+        const sideDrawer = <RadSideDrawer>Application.getRootView();
+        sideDrawer.closeDrawer();
     }
 }
