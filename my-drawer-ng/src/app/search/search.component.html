@@ -17,7 +17,22 @@
 
 <StackLayout class="page__content">
     <Label class="page__content-icon fas" text="&#xf002;"></Label>
-    <Label class="page__content-placeholder" 
+    <!-- Label class="page__content-placeholder" 
         *ngFor="let s of this.noticias.buscar()"
-        [text] = "s"></Label>
+        [text] = "s"></Label -->
+
+    <ListView class="list-group" [items]="this.noticias.buscar()" (itemTap)="onItemTap($event)" style="height:1250px ;">
+        <!-- Este contenido es un "array", por ende, tenemos que especificar un "template" anidado a 
+            este Listview para indicar cómo queremos que se vea cada uno de los ítems de la lista. Para 
+            eso usamos el "ng-template" de Angular-->
+        <ng-template let-x="item">
+                <FlexboxLayout flexDirection="row" class="list-group-item">
+                    <!--El protocolo RES significa que es un resource (recurso) Nativo/local dentro de la app-->
+                    <Image src="res://icon" class="thumb img-circle"></Image>
+                    <Label [text]="x" class="list-group-item-heading" 
+                    verticalAlignment="center" style="width: 60%"></Label>
+                </FlexboxLayout>
+        </ng-template>
+    </ListView>
+
 </StackLayout>
