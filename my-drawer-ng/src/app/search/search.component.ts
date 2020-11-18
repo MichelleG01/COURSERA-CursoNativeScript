@@ -3,10 +3,12 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { Application, Color, View } from "@nativescript/core";
 import { NoticiasService } from "../domain/noticias.service";
 import { RouterExtensions } from "@nativescript/angular";
+import * as SocialShare from "nativescript-social-share";
 
 @Component({
     selector: "Search", //esto crea un "tag" HTML, similar al HTML, en realidad es un "tag" XML, 
     //en donde nosotros vamos a poder instanciar, desde otros controles, a este control
+    moduleId: module.id,
     templateUrl: "./search.component.html", //aqui es donde se define, por más que la extensión sea HTML, 
     //en NativeScript, el código que se contiene dentro de estos archivos HTML es un XML, porque no estamos 
     //en un navegador web, sino que estamos en una aplicación "mobile"
@@ -40,6 +42,21 @@ export class SearchComponent implements OnInit {
     onItemTap(x):void{
         console.dir(x);
     }
+
+    onDelete(item): void {
+        this.resultados.splice(item, 1);
+        alert('Se elimino el item ' + item);
+
+    }
+
+    onDetalle(item):void {
+        alert('Mostrar los detalles del elemento ' + item);
+    }
+
+    onLongPress(s) {
+        console.log(s);
+        SocialShare.shareText(s, "Asunto: Compartido desde el curso!");
+      }
 
     onNavItemTap(navItemRoute: string): void {
         this.routerExtensions.navigate([navItemRoute], {

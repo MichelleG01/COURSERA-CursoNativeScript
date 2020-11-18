@@ -1,2 +1,10 @@
-<TextField [(ngModel)]="textFieldValue" hint="Ingrese el texto ..."></TextField>
-<Button text="Buscar" (tap)="onButtonTap()"></Button> 
+<FlexboxLayout flexDirection="row">
+    <TextField #texto="ngModel" [(ngModel)]="textFieldValue" hint="Ingresar texto..."
+    required>
+    required minlen="4">
+    </TextField>
+    <Label *ngIf="texto.hasError('required')" text="*">
+    </Label>
+    <Label *ngIf="!texto.hasError('required') && texto.hasError('minlen')" text="debe contener mas de 4 caracteres"></Label>
+</FlexboxLayout>
+    <Button text="Buscar!" (tap)="onButtonTap()" *ngIf="texto.valid"></Button>

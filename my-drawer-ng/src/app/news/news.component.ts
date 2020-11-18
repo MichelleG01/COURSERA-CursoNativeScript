@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "@nativescript/core/application";
 import * as Toast from 'nativescript-toast';
+import { ActivityIndicator } from '@nativescript/core';
 
 @Component({
   selector: 'News',
@@ -26,6 +27,11 @@ export class NewsComponent implements OnInit {
   onDrawerButtonTap(): void {
     const sideDrawer = <RadSideDrawer>app.getRootView();
     sideDrawer.showDrawer();
-}
+  }
+
+  cambio(e){
+    let indicator=<ActivityIndicator>e.object;
+    console.log("indicador busy: " + indicator.busy);
+  }
 
 }

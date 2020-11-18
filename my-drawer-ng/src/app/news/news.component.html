@@ -15,4 +15,9 @@
     <Label text="News"></Label>
 </ActionBar>
 
-<Button text="news works!" class="btn btn-primary"></Button>
+<!--Button text="news works!" class="btn btn-primary"></Button-->
+<Button text="Tocar!"  (tap)="activityIndicator.busy = !activityIndicator.busy " class="btn btn-primary btn-active"></Button>
+
+<ActivityIndicator #activityIndicator busy="true"
+ (busyChange)="cambio($event)" width="100" height="100" class="activity-indicator"> 
+</ActivityIndicator>
