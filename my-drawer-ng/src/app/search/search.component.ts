@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { Application } from "@nativescript/core";
+import { Application, Color, View } from "@nativescript/core";
 import { NoticiasService } from "../domain/noticias.service";
 import { RouterExtensions } from "@nativescript/angular";
 
@@ -14,6 +14,7 @@ import { RouterExtensions } from "@nativescript/angular";
 })
 export class SearchComponent implements OnInit {
     resultados : Array<string>;
+    @ViewChild("layout") layout: ElementRef; //indicamos el nombre de la variable de la vista
 
     constructor( private noticias: NoticiasService, private routerExtensions: RouterExtensions ) {
         // Use the component constructor to inject providers.
@@ -53,5 +54,20 @@ export class SearchComponent implements OnInit {
 
     buscarAhora(s:string){
         this.resultados = this.noticias.buscar().filter((x)=> x.indexOf(s)>= 0);
+        //ejecutar animacion luego del buscar
+        const layout_native_element = <View>this.layout.nativeElement;
+        var enums = require("tns-core-modules/ui/enums");
+        layout_native_element.animate({
+            backgroundColor: new Color("Green"),
+            duration: 300,
+            delay: 150,
+            iterations: 2,
+            translate: { x: 0, y: 100},
+            curve: enums.AnimationCurve.easeIn
+        }).then( () => layout_native_element.animate({ //despies de retornar la promesa
+            backgroundColor: new Color("Black"),
+            duration: 300,
+            delay: 150
+        }))
     }
 }
