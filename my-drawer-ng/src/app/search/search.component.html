@@ -22,7 +22,8 @@
         [text] = "s"></Label -->
 
     <!-- ListView class="list-group" [items]="this.noticias.buscar()" (itemTap)="onItemTap($event)" style="height:1250px ;" -->
-    <ListView class="list-group" [items]="this.noticias.buscar()" (itemTap)="onNavItemTap('/search/detalle',$event)" style="height:1250px ;"></ListView>
+    <ns-search-form (search)="buscarAhora($event)" [inicial]="'hola'"></ns-search-form>
+    <ListView class="list-group" [items]="this.resultados" (itemTap)="onNavItemTap('/search/detalle',$event)" style="height:1250px ;"></ListView>
         <!-- Este contenido es un "array", por ende, tenemos que especificar un "template" anidado a 
             este Listview para indicar cómo queremos que se vea cada uno de los ítems de la lista. Para 
             eso usamos el "ng-template" de Angular-->

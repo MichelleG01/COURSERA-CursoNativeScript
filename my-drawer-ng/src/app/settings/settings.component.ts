@@ -19,11 +19,15 @@ export class SettingsComponent implements OnInit {
     ngOnInit(): void {
         // Init your component properties here.
         this.doLater(()=>
-            Dialogs.action("Mensaje","Cancelar", ["Opcion1","Opcion2"])
-            .then((result) => {
+            Dialogs.action("Mensaje","Cancelar", ["Opcion1","Opcion2"]) //le indicamos al usuario que debe
+            //seleccionar una opcion
+            .then((result) => { //devuelve un "promise" de JavaScript donde nos pone el "result"
                 console.log("resultado: "+ result);
                 if(result === "Opcion1"){
                     this.doLater(()=>
+                    /*si queremos abrir otro diálogo no se va a poder, entonces, por eso es que 
+                    introducimos la función "doLater". También nos sirve porque el dialog lo tenemos que 
+                    abrir luego de que ejecutó el "ngOnInit"*/
                     Dialogs.alert({
                         title: "Titulo 1",
                         message: "mje 1",

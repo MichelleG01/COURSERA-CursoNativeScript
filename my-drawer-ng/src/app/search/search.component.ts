@@ -13,6 +13,7 @@ import { RouterExtensions } from "@nativescript/angular";
     //providers: [NoticiasService] // provider de manera loca
 })
 export class SearchComponent implements OnInit {
+    resultados : Array<string>;
 
     constructor( private noticias: NoticiasService, private routerExtensions: RouterExtensions ) {
         // Use the component constructor to inject providers.
@@ -48,5 +49,9 @@ export class SearchComponent implements OnInit {
 
         const sideDrawer = <RadSideDrawer>Application.getRootView();
         sideDrawer.closeDrawer();
+    }
+
+    buscarAhora(s:string){
+        this.resultados = this.noticias.buscar().filter((x)=> x.indexOf(s)>= 0);
     }
 }
