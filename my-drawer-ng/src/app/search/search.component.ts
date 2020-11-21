@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import * as Toast from "nativescript-toasts";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { Application, Color, View } from "@nativescript/core";
 import { NoticiasService } from "../domain/noticias.service";
@@ -29,9 +30,9 @@ export class SearchComponent implements OnInit {
         console.log([1,2,3]);
         console.dir([4,5,6]);*/
 
-        this.noticias.agregar("hola");
+        /*this.noticias.agregar("hola");
         this.noticias.agregar("hola 2");
-        this.noticias.agregar("hola 3");
+        this.noticias.agregar("hola 3");*/
     }
 
     onDrawerButtonTap(): void {
@@ -70,7 +71,7 @@ export class SearchComponent implements OnInit {
     }
 
     buscarAhora(s:string){
-        this.resultados = this.noticias.buscar().filter((x)=> x.indexOf(s)>= 0);
+        /*this.resultados = this.noticias.buscar().filter((x)=> x.indexOf(s)>= 0);
         //ejecutar animacion luego del buscar
         const layout_native_element = <View>this.layout.nativeElement;
         var enums = require("tns-core-modules/ui/enums");
@@ -85,6 +86,15 @@ export class SearchComponent implements OnInit {
             backgroundColor: new Color("Black"),
             duration: 300,
             delay: 150
-        }))
+        }))*/
+        console.dir("buscarAhora"+ s); //ENtra al buscarAhora
+        this.noticias.buscar(s).then((r: any) => {//luego, llamamos a buscar(el del search module) nos retorna una promesa, y sobre la promesa llamamos al mpetodo THEN
+            console.log("resultados buscarAhora:" + JSON.stringify(r));// tenemos dos callbacks aquí: 1cuando llega el resultado el retorno favorable, lo mostramos por consola y lo asignamos a resultados(Variable del front end)
+            this.resultados =r; 
+        }, (e) => {//2. En caso de error, también lo logueamos y usamos en Toast
+            console.log("error buscarAhora" + e);
+            Toast.show({text: "Error en la búsqueda", duration: Toast.DURATION.SHORT}); //por si hay un error en la
+            //consulta de la api
+        });
     }
 }
