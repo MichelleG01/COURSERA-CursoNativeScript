@@ -5,6 +5,9 @@ import { Application, Color, View } from "@nativescript/core";
 import { NoticiasService } from "../domain/noticias.service";
 import { RouterExtensions } from "@nativescript/angular";
 import * as SocialShare from "nativescript-social-share";
+import { Store } from "@ngrx/store";
+import { AppState } from "../app.module";
+import { Noticia, NuevaNoticiaAction } from "../domain/noticias-state.model";
 
 @Component({
     selector: "Search", //esto crea un "tag" HTML, similar al HTML, en realidad es un "tag" XML, 
@@ -19,7 +22,10 @@ export class SearchComponent implements OnInit {
     resultados : Array<string>;
     @ViewChild("layout") layout: ElementRef; //indicamos el nombre de la variable de la vista
 
-    constructor( private noticias: NoticiasService, private routerExtensions: RouterExtensions ) {
+    constructor(private noticias: NoticiasService, private routerExtensions: RouterExtensions,
+        private store: Store<AppState> //redux
+        ) {//construcor que recibe variable de "noticias.services.ts", si no se importa esta clase automaticamente, debe importarse arriba*
+        //La variable noticias se podrá usar en todo este componente, y en el html
         // Use the component constructor to inject providers.
     }
 
@@ -33,6 +39,13 @@ export class SearchComponent implements OnInit {
         /*this.noticias.agregar("hola");
         this.noticias.agregar("hola 2");
         this.noticias.agregar("hola 3");*/
+        this.store.select((state) => state.noticias.sugerida)
+        .subscribe((data) => {
+            const f = data;
+            if (f != null) {
+                Toast.show({text: "Sugerimos leer: " + f.titulo, duration: Toast.DURATION.SHORT});
+            }
+        })
     }
 
     onDrawerButtonTap(): void {
@@ -40,8 +53,8 @@ export class SearchComponent implements OnInit {
         sideDrawer.showDrawer();
     }
 
-    onItemTap(x):void{
-        console.dir(x);
+    onItemTap(args):void{
+        this.store.dispatch(new NuevaNoticiaAction(new Noticia(args.view.bindingContext)));
     }
 
     onDelete(item): void {
