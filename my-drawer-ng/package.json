@@ -45,6 +45,7 @@
     "nativescript-angular": "^10.0.0",
     "nativescript-pulltorefresh": "^2.3.0",
     "nativescript-social-share": "^1.6.0",
+    "nativescript-sqlite": "^2.6.4",
     "nativescript-toast": "^2.0.0",
     "nativescript-toasts": "^1.0.3",
     "nativescript-ui-sidedrawer": "~9.0.0",
