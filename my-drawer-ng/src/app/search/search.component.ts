@@ -67,10 +67,11 @@ export class SearchComponent implements OnInit {
         alert('Mostrar los detalles del elemento ' + item);
     }
 
+    //Se utiliza este para compartir
     onLongPress(s) {
         console.log(s);
         SocialShare.shareText(s, "Asunto: Compartido desde el curso!");
-      }
+    }
 
     onNavItemTap(navItemRoute: string): void {
         this.routerExtensions.navigate([navItemRoute], {

@@ -37,7 +37,7 @@
             <ng-template let-x="item">
                     <FlexboxLayout flexDirection="row" class="list-group-item">
                         <!--El protocolo RES significa que es un resource (recurso) Nativo/local dentro de la app-->
-                        <Image src="res://icon" class="thumb img-circle"></Image>
+                        <Image src="res://icon" class="thumb img-circle" (longPress)="onLongPress(x)"></Image>
                         <Label [text]="x" class="list-group-item-heading" 
                         verticalAlignment="center" style="width: 60%"></Label>
                         <Button text="Borrar" class="btn" (tap)="onDelete(x)" style="width: 25%"></Button>
